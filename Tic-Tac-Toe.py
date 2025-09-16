@@ -39,7 +39,7 @@ class game:
 class player:
     playerNum = 1
     def __init__(self, symbol, gameObj):
-        self.name = input(f"Enter name of player {player.playerNum}: ").strip().capitalize()
+        self.name = input(f"Enter name of player {player.playerNum}: ").strip().title()
         self.symbol = symbol
         self.gameObj = gameObj
         player.playerNum += 1
