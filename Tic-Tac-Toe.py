@@ -46,8 +46,12 @@ class Player:
     def play(self):
         print(f"{self.name}'s turn ({self.symbol}):")
         while True:
-            self.x = int(input("Enter row #(1 - 3): ")) - 1
-            self.y = int(input("Enter column #(1 - 3): ")) - 1
+            try:
+                self.x = int(input("Enter row #(1 - 3): ")) - 1
+                self.y = int(input("Enter column #(1 - 3): ")) - 1
+            except ValueError:
+                print("Enter an integer between 1 and 3!\n")
+                continue
 
             try:
                 if self.gameObj.board[self.x][self.y] == " ":
@@ -73,6 +77,19 @@ class Player:
             return self.symbol
         
         if self.gameObj.freeSpace == 0: return "tie"
+
+
+
+print(r"""
+ _______ _        _______           _______         
+|__   __(_)      |__   __|         |__   __|        
+   | |   _  ___     | | __ _  ___     | | ___   ___ 
+   | |  | |/ __|    | |/ _` |/ __|    | |/ _ \ / _ \
+   | |  | | (__     | | (_| | (__     | | (_) |  __/
+   |_|  |_|\___|    |_|\__,_|\___|    |_|\___/ \___|
+                                                   
+            Lets go...
+    """)
 
 g = Game()
 while True:
