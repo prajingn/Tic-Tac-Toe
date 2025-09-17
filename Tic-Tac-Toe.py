@@ -2,6 +2,8 @@ class Game:
     def __init__(self):
         self.board = [[' ', ' ', ' '] for i in range(3)]
         self.freeSpace = 9
+        self.p1 = Player('X', self)
+        self.p2 = Player('O', self)
 
     def printBoard(self):
         print()
@@ -14,22 +16,19 @@ class Game:
     def runGame(self):
         self.board = [[' ', ' ', ' '] for i in range(3)]
         self.freeSpace = 9
-        Player.playerNum = 1
-        p1 = Player('X', self)
-        p2 = Player('O', self)
         status = None
         while(True):
             self.printBoard()
-            status = p1.play()
+            status = self.p1.play()
             if status: 
                 break
             self.printBoard()
-            status = p2.play()
+            status = self.p2.play()
             if status:
                 break
         
         if status == "X" or status == "O":
-            playerName = p1.name if p1.symbol == status else p2.name
+            playerName = self.p1.name if self.p1.symbol == status else self.p2.name
             self.printBoard()
             print(f"\nThe WINNER is: {playerName} ({status})")
         else:
@@ -77,10 +76,8 @@ class Player:
 
 g = Game()
 while True:
+    print()
     g.runGame()
     playAgain = input("\nPlay Again? (Y / n): ").strip().lower()
     if playAgain == 'n':
         break
-    else:
-        print()
-        g.runGame()
