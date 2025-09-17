@@ -12,4 +12,4 @@ python Tic-Tac-Toe.py
 ```
 
 ## Gameplay
-![Game Screenshot](assets/image.png)
+![Game Screenshot](assets/gamePlay.png)
