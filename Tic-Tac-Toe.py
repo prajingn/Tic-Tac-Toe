@@ -1,4 +1,4 @@
-class game:
+class Game:
     def __init__(self):
         self.board = [[' ', ' ', ' '] for i in range(3)]
         self.freeSpace = 9
@@ -14,9 +14,9 @@ class game:
     def runGame(self):
         self.board = [[' ', ' ', ' '] for i in range(3)]
         self.freeSpace = 9
-        player.playerNum = 1
-        p1 = player('X', self)
-        p2 = player('O', self)
+        Player.playerNum = 1
+        p1 = Player('X', self)
+        p2 = Player('O', self)
         status = None
         while(True):
             self.printBoard()
@@ -36,13 +36,13 @@ class game:
             print("\nIt is a TIE")
 
 
-class player:
+class Player:
     playerNum = 1
     def __init__(self, symbol, gameObj):
-        self.name = input(f"Enter name of player {player.playerNum}: ").strip().title()
+        self.name = input(f"Enter name of player {Player.playerNum}: ").strip().title()
         self.symbol = symbol
         self.gameObj = gameObj
-        player.playerNum += 1
+        Player.playerNum += 1
 
     def play(self):
         print(f"{self.name}'s turn ({self.symbol}):")
@@ -50,12 +50,15 @@ class player:
             self.x = int(input("Enter row #(1 - 3): ")) - 1
             self.y = int(input("Enter column #(1 - 3): ")) - 1
 
-            if self.gameObj.board[self.x][self.y] == " ":
-                self.gameObj.board[self.x][self.y] = self.symbol
-                self.gameObj.freeSpace -= 1
-                break
-            else:
-                print("Enter valid slot!")
+            try:
+                if self.gameObj.board[self.x][self.y] == " ":
+                    self.gameObj.board[self.x][self.y] = self.symbol
+                    self.gameObj.freeSpace -= 1
+                    break
+                else:
+                    print("Enter valid slot!\n")
+            except IndexError:
+                print("Enter value between 1 and 3!\n")
         return self.getStatus()
     
     def getStatus(self):
@@ -72,7 +75,7 @@ class player:
         
         if self.gameObj.freeSpace == 0: return "tie"
 
-g = game()
+g = Game()
 while True:
     g.runGame()
     playAgain = input("\nPlay Again? (Y / n): ").strip().lower()
