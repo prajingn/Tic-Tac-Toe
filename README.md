@@ -8,3 +8,8 @@ A simple **Tic Tac Toe** game written in Python.
 git clone https://github.com/prajingn/Tic-Tac-Toe.git
 cd Tic-Tac-Toe/
 python Tic-Tac-Toe.py
+
+```
+
+## Gameplay
+![Game Screenshot](assets/image.png)
